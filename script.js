@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (contactSection) {
                 contactSection.classList.add('active');
+                // Add to browser history
+                history.pushState({ section: 'contact' }, '', '#contact');
             }
         });
     }
@@ -81,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (contactSection) {
                 contactSection.classList.remove('active');
+                // Go back in history
+                history.back();
             }
         });
     }
@@ -95,6 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (techStackSection) {
                 techStackSection.classList.add('active');
+                // Add to browser history
+                history.pushState({ section: 'tech-stack' }, '', '#tech-stack');
             }
         });
     }
@@ -105,6 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (techStackSection) {
                 techStackSection.classList.remove('active');
+                // Go back in history
+                history.back();
             }
         });
     }
@@ -119,6 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (projectsSection) {
                 projectsSection.classList.add('active');
+                // Add to browser history
+                history.pushState({ section: 'projects' }, '', '#projects');
             }
         });
     }
@@ -129,6 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (projectsSection) {
                 projectsSection.classList.remove('active');
+                // Go back in history
+                history.back();
             }
         });
     }
@@ -143,6 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (aboutSection) {
                 aboutSection.classList.add('active');
+                // Add to browser history
+                history.pushState({ section: 'about' }, '', '#about');
             }
         });
     }
@@ -153,9 +167,37 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (aboutSection) {
                 aboutSection.classList.remove('active');
+                // Go back in history
+                history.back();
             }
         });
     }
+
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function (e) {
+        // Close all sections when going back
+        const allSections = document.querySelectorAll('.contact-section, .tech-stack-section, .projects-section, .about-section');
+        allSections.forEach(section => {
+            section.classList.remove('active');
+        });
+    });
+
+    // Handle initial page load with hash
+    window.addEventListener('load', function () {
+        const hash = window.location.hash;
+        if (hash) {
+            const sectionMap = {
+                '#contact': '.contact-section',
+                '#tech-stack': '.tech-stack-section',
+                '#projects': '.projects-section',
+                '#about': '.about-section'
+            };
+            const section = document.querySelector(sectionMap[hash]);
+            if (section) {
+                section.classList.add('active');
+            }
+        }
+    });
 
     // Form submission - Mailto
     const contactForm = document.getElementById('contactForm');
