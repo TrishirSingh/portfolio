@@ -145,6 +145,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Certifications button handler
+    const certificationsBtn = document.querySelector('a[href="#certifications"].btn-secondary');
+    const certificationsSection = document.querySelector('.certifications-section');
+    const backToHomeCertificationsBtn = document.getElementById('backToHomeCertifications');
+
+    if (certificationsBtn) {
+        certificationsBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (certificationsSection) {
+                certificationsSection.classList.add('active');
+                history.pushState({ section: 'certifications' }, '', '#certifications');
+            }
+        });
+    }
+
+    if (backToHomeCertificationsBtn) {
+        backToHomeCertificationsBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (certificationsSection) {
+                certificationsSection.classList.remove('active');
+                history.back();
+            }
+        });
+    }
+
     // About button handler
     const aboutBtn = document.querySelector('a[href="#about"].btn-secondary');
     const aboutSection = document.querySelector('.about-section');
@@ -176,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle browser back/forward buttons
     window.addEventListener('popstate', function (e) {
         // Close all sections when going back
-        const allSections = document.querySelectorAll('.contact-section, .tech-stack-section, .projects-section, .about-section');
+        const allSections = document.querySelectorAll('.contact-section, .tech-stack-section, .projects-section, .certifications-section, .about-section');
         allSections.forEach(section => {
             section.classList.remove('active');
         });
@@ -190,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 '#contact': '.contact-section',
                 '#tech-stack': '.tech-stack-section',
                 '#projects': '.projects-section',
+                '#certifications': '.certifications-section',
                 '#about': '.about-section'
             };
             const section = document.querySelector(sectionMap[hash]);

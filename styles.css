@@ -1500,6 +1500,116 @@ body {
     }
 }
 
+/* Certifications Section */
+.certifications-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9998;
+    opacity: 0;
+    transform: translateY(100vh);
+    pointer-events: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--bg-primary);
+    -webkit-overflow-scrolling: touch;
+}
+
+.certifications-section.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.certifications-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+}
+
+.certifications-container {
+    max-width: 1000px;
+    width: 100%;
+}
+
+.certifications-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.certifications-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+}
+
+.certifications-header p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.certifications-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .certifications-page {
+        padding: 40px 20px;
+        align-items: flex-start;
+        padding-top: 60px;
+    }
+
+    .certifications-container {
+        max-width: 100%;
+        padding: 40px 25px;
+    }
+
+    .certifications-header {
+        margin-bottom: 40px;
+    }
+
+    .certifications-header h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .certifications-header p {
+        font-size: 1rem;
+    }
+
+    .certifications-content {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .certifications-page {
+        padding: 30px 15px;
+        padding-top: 50px;
+    }
+
+    .certifications-container {
+        padding: 30px 20px;
+    }
+
+    .certifications-header {
+        margin-bottom: 30px;
+    }
+
+    .certifications-content {
+        gap: 20px;
+    }
+}
+
 /* About Section */
 .about-section {
     position: fixed;
@@ -1667,6 +1777,23 @@ body {
     font-family: 'JetBrains Mono', monospace;
     letter-spacing: 1px;
     flex-shrink: 0;
+}
+
+.certification-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: color 0.3s ease, gap 0.3s ease;
+}
+
+.certification-link:hover {
+    color: var(--accent-hover);
+    gap: 10px;
 }
 
 @media (max-width: 768px) {
